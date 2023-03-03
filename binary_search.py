@@ -36,7 +36,7 @@ def count_repeats(xs, x):
 
     HINT: 
     Use the following three step procedure:
-        1) use binary search to find the lowest index with a value >= x
+        1) use binary search to find the lowest index with a value == x
         2) use binary search to find the lowest index with a value < x
         3) return the difference between step 1 and 2
     I highly recommend creating stand-alone functions for steps 1 and 2,
