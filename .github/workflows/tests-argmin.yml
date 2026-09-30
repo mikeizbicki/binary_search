@@ -1,4 +1,4 @@
-name: extra_credit
+name: tests_argmin
 on:
   push:
     branches: ['*']
@@ -23,8 +23,7 @@ jobs:
       - name: Run linter
         run: |
           pip3 install flake8 pep8-naming
-          flake8 binary_search.py --ignore=E501
+          flake8 src/ --ignore=E501
       - name: Run tests
         run: |
-          python -m pytest tests/test_main.py
-          python -m pytest tests/test_ec.py
+          python -m pytest tests/test_argmin.py

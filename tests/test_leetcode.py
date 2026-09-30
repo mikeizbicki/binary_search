@@ -1,4 +1,4 @@
-from binary_search import find_smallest_positive, count_repeats, argmin
+from src.leetcode import find_smallest_positive, count_repeats
 import timeit
 
 
@@ -81,93 +81,12 @@ def test__count_repeats_12():
 
 
 
-def test__argmin_1():
-    epsilon = 1.0
-    lo = -20
-    hi = 20
-    x_min = 5
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
-
-def test__argmin_2():
-    epsilon = 1e-3
-    lo = -20
-    hi = 20
-    x_min = 5
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
-
-def test__argmin_3():
-    epsilon = 1e-6
-    lo = -20
-    hi = 20
-    x_min = 5
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
-
-def test__argmin_4():
-    epsilon = 1e-9
-    lo = -20
-    hi = 20
-    x_min = 5
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
-
-def test__argmin_5():
-    epsilon = 1e-12
-    lo = -20
-    hi = 20
-    x_min = 5
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
-
-def test__argmin_6():
-    epsilon = 1e-6
-    lo = -1e20
-    hi = 1e20
-    x_min = 5000
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
-
-def test__argmin_7():
-    epsilon = 1e-6
-    lo = -1e20
-    hi = 0
-    x_min = 5000
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-0) <= epsilon
-
-def test__argmin_8():
-    epsilon = 1e-6
-    lo = 0
-    hi = 1e20
-    x_min = 5000
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
-
-def test__argmin_9():
-    epsilon = 1e-6
-    lo = 0
-    hi = 1e20
-    x_min = -5000
-    f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-0) <= epsilon
-
-def test__argmin_10():
-    epsilon = 1e-6
-    lo = 0
-    hi = 1e20
-    x_min = -5000
-    f = lambda x: x
-    assert abs(argmin(f,lo,hi,epsilon)-0) <= epsilon
-
-
 # the following test ensure that the runtimes are logrithmic
 
 def test__find_smallest_positive_runtime():
     seconds = timeit.timeit(
         'find_smallest_positive(xs)',
-        'from binary_search import find_smallest_positive; xs=list(range(-100000,100000,1))'
+        'from src.leetcode import find_smallest_positive; xs=list(range(-100000,100000,1))'
         )
     print('seconds=',seconds)
     return True
@@ -175,7 +94,7 @@ def test__find_smallest_positive_runtime():
 def test__count_repeats_runtime():
     seconds = timeit.timeit(
         'count_repeats(xs,0)',
-        'from binary_search import count_repeats; xs=list(range(100000,-100000,-1))'
+        'from src.leetcode import count_repeats; xs=list(range(100000,-100000,-1))'
         )
     print('seconds=',seconds)
     return True
@@ -183,7 +102,7 @@ def test__count_repeats_runtime():
 def test__count_repeats_runtime2():
     seconds = timeit.timeit(
         'count_repeats(xs,0)',
-        'from binary_search import count_repeats; xs=[0]*100000'
+        'from src.leetcode import count_repeats; xs=[0]*100000'
         )
     print('seconds=',seconds)
     return True
