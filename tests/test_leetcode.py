@@ -1,4 +1,7 @@
 from src.leetcode import find_smallest_positive, count_repeats
+import math
+import sys
+import time
 import timeit
 
 
@@ -111,3 +114,60 @@ def test__count_repeats_runtime2():
         )
     print('seconds=',seconds)
     return True
+
+
+def _count_calls(fn, *args):
+    '''
+    Invoke fn(*args) while counting how many times fn is entered.
+    Works for recursive functions: each recursive call fires a 'call' event.
+    '''
+    calls = 0
+
+    def tracer(frame, event, arg):
+        nonlocal calls
+        if event == 'call' and frame.f_code.co_name == fn.__name__:
+            calls += 1
+        return tracer
+
+    sys.setprofile(tracer)
+    try:
+        result = fn(*args)
+    finally:
+        sys.setprofile(None)
+    return result, calls
+
+
+def test__find_smallest_positive_call_count():
+    xs = list(range(-100000, 100000))
+    _, calls = _count_calls(find_smallest_positive, xs)
+    # A correct binary search makes O(log n) recursive calls.
+    assert calls <= 2 * math.ceil(math.log2(len(xs)))
+
+
+def test__count_repeats_call_count():
+    xs = list(range(100000, -100000, -1))
+    _, calls = _count_calls(count_repeats, xs, 0)
+    # count_repeats performs two binary searches, so allow 2x the bound.
+    assert calls <= 4 * math.ceil(math.log2(len(xs)))
+
+
+def test__find_smallest_positive_elapsed():
+    xs = list(range(-100000, 100000))
+    find_smallest_positive(xs)  # warm up
+    t0 = time.perf_counter()
+    for _ in range(1000):
+        find_smallest_positive(xs)
+    dt = time.perf_counter() - t0
+    # 1000 log-time calls should complete in well under a second;
+    # a linear implementation would take many seconds here.
+    assert dt < 1.0
+
+
+def test__count_repeats_elapsed():
+    xs = list(range(100000, -100000, -1))
+    count_repeats(xs, 0)  # warm up
+    t0 = time.perf_counter()
+    for _ in range(1000):
+        count_repeats(xs, 0)
+    dt = time.perf_counter() - t0
+    assert dt < 1.0
