@@ -138,10 +138,10 @@ def test__find_smallest_5():
     assert find_smallest([]) is None
 
 def test__find_smallest_6():
-    assert find_smallest([-4, -3, -2, -1])==3
+    assert find_smallest([-4, -3, -2, -1])==0
 
 def test__find_smallest_7():
-    assert find_smallest([-4, -3, -2, -1, 0, 1])==3
+    assert find_smallest([-4, -3, -2, -1, 0, 1])==0
 
 def test__find_smallest_8():
     assert find_smallest(list(range(100000, -100000, -1)))==199999
