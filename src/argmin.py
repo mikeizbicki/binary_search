@@ -80,6 +80,30 @@ def bounded_argmin(f, lo, hi, epsilon=1e-3):
     NOTE:
     The runtime of this algorithm is O(log(1/epsilon)).
     Notice that there is no "n" / size parameter here at all.
+
+    In this class, you will not be responsible for detailed proofs of runtimes like this.
+    But here is an example proof of this runtime:
+
+        **Proof**
+        Each recursive call shrinks the interval to length <= (2/3)*(hi-lo).
+        After k calls, length <= (2/3)^k * (hi-lo).
+        We stop when length < epsilon, so we set
+        
+            (2/3)^k * (hi-lo) < epsilon
+
+        then solve for k to get
+
+            k > log_(2/3) (epsilon / (hi-lo))
+
+        since log has base less than 1,
+        the inequality flips when we take it of both sides.
+        Negating the base to put the log above 1 gives us
+
+            k > log(3/2) ((hi-lo) / epsilon)
+
+        then applying big-O notation,
+        the base of the log and the (hi-lo) factor drop out,
+        giving us k = O(log 1/epsilon).
     '''
 
 
