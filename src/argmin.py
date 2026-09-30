@@ -1,4 +1,9 @@
 #!/bin/python3
+'''
+A common data science problem is to find the minimum of an unknown function.
+For example, all modern machine learning algorithms (including training large language models like chatgpt) are implemented this way.
+In this file, you will explore some basic methods for finding the minimum using binary search.
+'''
 
 
 def argmin(f, lo, hi, epsilon=1e-3):
@@ -16,18 +21,13 @@ def argmin(f, lo, hi, epsilon=1e-3):
                depending on which one is the smallest,
                you recursively call your function on the interval [lo,m2] or [m1,hi]
 
-    APPLICATION:
-    Essentially all data mining algorithms are just this argmin implementation in disguise.
-    If you go on to take the data mining class (CS145/MATH166),
-    we will spend a lot of time talking about different f functions that can be minimized and their applications.
-    But the actual minimization code will all be a variant of this binary search.
-
     WARNING:
     The doctests below are not intended to pass on your code,
     and are only given so that you have an example of what the output should look like.
     Your output numbers are likely to be slightly different due to minor implementation details.
     Writing tests for code that uses floating point numbers is notoriously difficult.
     See the pytests for correct examples.
+    The test cases on github actions do not test these doctests.
 
     >>> argmin(lambda x: (x-5)**2, -20, 20)
     5.000040370009773

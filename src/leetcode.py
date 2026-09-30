@@ -1,5 +1,7 @@
 #!/bin/python3
 '''
+All of the functions in this file are classic leetcode style interview questions.
+
 JOKE: There are 2 hard problems in computer science:
 1. cache invalidation,
 2. naming things, and
@@ -19,9 +21,6 @@ def find_smallest_positive(xs):
     HINT:
     This is essentially the binary search algorithm from class,
     but you're always searching for 0.
-
-    APPLICATION:
-    This is a classic question for technical interviews.
 
     >>> find_smallest_positive([-3, -2, -1, 0, 1, 2, 3])
     4
@@ -47,9 +46,6 @@ def count_repeats(xs, x):
     and write your own doctests for these functions.
     Then, once you're sure these functions work independently,
     completing step 3 will be easy.
-
-    APPLICATION:
-    This is a classic question for technical interviews.
 
     >>> count_repeats([5, 4, 3, 3, 3, 3, 3, 3, 3, 2, 1], 3)
     7

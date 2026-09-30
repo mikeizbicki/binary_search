@@ -97,7 +97,6 @@ def test__find_smallest_positive_runtime():
         'from src.leetcode import find_smallest_positive; xs=list(range(-100000,100000,1))'
         )
     print('seconds=',seconds)
-    return True
 
 def test__count_repeats_runtime():
     seconds = timeit.timeit(
@@ -105,7 +104,6 @@ def test__count_repeats_runtime():
         'from src.leetcode import count_repeats; xs=list(range(100000,-100000,-1))'
         )
     print('seconds=',seconds)
-    return True
 
 def test__count_repeats_runtime2():
     seconds = timeit.timeit(
@@ -113,7 +111,6 @@ def test__count_repeats_runtime2():
         'from src.leetcode import count_repeats; xs=[0]*100000'
         )
     print('seconds=',seconds)
-    return True
 
 
 # the code below is a fancier way of testing for runtime of programs;
