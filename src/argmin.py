@@ -1,4 +1,3 @@
-#!/bin/python3
 '''
 A common data science problem is to find the minimum of an unknown function.
 For example, all modern machine learning algorithms (including training large language models like chatgpt) are implemented this way.

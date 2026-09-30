@@ -1,4 +1,3 @@
-#!/bin/python3
 '''
 All of the functions in this file are classic leetcode style interview questions.
 They all take a container xs as input and run in time O(log n),
