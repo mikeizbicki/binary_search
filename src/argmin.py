@@ -5,17 +5,22 @@ In this file, you will explore some basic methods for finding the minimum using 
 
 The main function of this file is called argmin.
 It takes another function as a parameter, which might feel unusual to you.
-Consider the example function f
+Consider the example quadratic function below:
 
 >>> def f(x):
 ...    return (x-5)**2
 
-Then we can pass the function f to another function as long as we do not put () next to f.
+The minimum of `f` is 5, and f(5) = 0.
+In calculus, we compute the minimum of this function by taking the derivative f'
+and setting it to 0.
+
+The argmin function will do this work for us automatically:
 
 >>> int(argmin(f))
 5
 
-(It should be "obvious" to you that 5 is the correct answer here that minimizes f.)
+Notice that when we call the argmin function, we pass `f` and not `f()`;
+that is, we are passing the function itself and not calling the function.
 
 It is often awkward to define simple functions using the `def` syntax,
 and python has a shorter `lambda` syntax for defining 1-line functions.
@@ -27,6 +32,15 @@ The code below is equivalent to the code above:
 These "lambda functions" are also called "anonymous functions"
 because they do not have a name.
 The test cases make extensive use of these anonymous functions.
+
+Here are some more examples using slightly more complex functions:
+
+>>> int(argmin(lambda x: abs(x - 5)))
+5
+
+>>> g = lambda x: (x - 5)**2 if x > 5 else 3*(x - 5)**2
+>>> int(argmin(g))
+5
 
 NOTE:
 The argmin function works over floating point values,
