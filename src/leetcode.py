@@ -54,3 +54,62 @@ def count_repeats(xs, x):
     >>> count_repeats([3, 2, 1], 4)
     0
     '''
+
+
+def find_largest_negative(xs, lo=0, hi=None):
+    '''
+    Assume that xs is a list of numbers sorted from LOWEST to HIGHEST.
+    Find the index of the largest negative number.
+    If no such index exists, return `None`.
+
+    This is the mirror image of find_smallest_positive:
+    both functions search for the boundary at 0,
+    but they return different sides of that boundary.
+
+    >>> find_largest_negative([-3, -2, -1, 0, 1, 2, 3])
+    2
+    >>> find_largest_negative([1, 2, 3]) is None
+    True
+    >>> find_largest_negative([-3, -2, -1])
+    2
+    '''
+    if hi is None:
+        hi = len(xs)
+    if lo >= hi:
+        return lo - 1 if lo > 0 else None
+    mid = (lo + hi) // 2
+    if xs[mid] < 0:
+        return find_largest_negative(xs, mid + 1, hi)
+    return find_largest_negative(xs, lo, mid)
+
+
+def find_smallest(xs, lo=0, hi=None):
+    '''
+    Assume that xs is a list of numbers that is strictly decreasing
+    and then strictly increasing,
+    so that xs has a unique smallest element.
+    Return the index of that element, or `None` if xs is empty.
+
+    This is the discrete analogue of argmin in src/argmin.py:
+    argmin minimizes a convex function over the reals,
+    and find_smallest minimizes a list of numbers.
+
+    >>> find_smallest([4, 3, 2, 1, 2, 3])
+    3
+    >>> find_smallest([1, 2, 3])
+    0
+    >>> find_smallest([3, 2, 1])
+    2
+    >>> find_smallest([]) is None
+    True
+    '''
+    if hi is None:
+        if len(xs) == 0:
+            return None
+        hi = len(xs) - 1
+    if lo >= hi:
+        return lo
+    mid = (lo + hi) // 2
+    if xs[mid] < xs[mid + 1]:
+        return find_smallest(xs, lo, mid)
+    return find_smallest(xs, mid + 1, hi)

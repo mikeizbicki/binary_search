@@ -1,4 +1,4 @@
-from src.leetcode import find_smallest_positive, count_repeats
+from src.leetcode import find_smallest_positive, find_largest_negative, count_repeats, find_smallest
 import math
 import sys
 import time
@@ -83,6 +83,77 @@ def test__count_repeats_12():
     assert count_repeats([5]*10000,2)==0
 
 
+def test__find_largest_negative_1():
+    assert find_largest_negative([-3, -2, -1, 0, 1, 2, 3])==2
+
+def test__find_largest_negative_2():
+    assert find_largest_negative([1, 2, 3]) is None
+
+def test__find_largest_negative_3():
+    assert find_largest_negative([-3, -2, -1])==2
+
+def test__find_largest_negative_4():
+    assert find_largest_negative([-3, -2, -1, 0])==2
+
+def test__find_largest_negative_5():
+    assert find_largest_negative([-0.5])==0
+
+def test__find_largest_negative_6():
+    assert find_largest_negative([]) is None
+
+def test__find_largest_negative_7():
+    assert find_largest_negative([-1])==0
+
+def test__find_largest_negative_8():
+    assert find_largest_negative([0]) is None
+
+def test__find_largest_negative_9():
+    assert find_largest_negative([0, 1, 2]) is None
+
+def test__find_largest_negative_10():
+    assert find_largest_negative([0]*10) is None
+
+def test__find_largest_negative_11():
+    assert find_largest_negative(list(range(-100000, 100000, 47)))==2127
+
+def test__find_largest_negative_12():
+    assert find_largest_negative(list(range(100000, 200000, 47))) is None
+
+def test__find_largest_negative_13():
+    assert find_largest_negative(list(range(-200000, -100000, 47)))==2127
+
+def test__find_smallest_1():
+    assert find_smallest([4, 3, 2, 1, 2, 3])==3
+
+def test__find_smallest_2():
+    assert find_smallest([1, 2, 3])==0
+
+def test__find_smallest_3():
+    assert find_smallest([3, 2, 1])==2
+
+def test__find_smallest_4():
+    assert find_smallest([5])==0
+
+def test__find_smallest_5():
+    assert find_smallest([]) is None
+
+def test__find_smallest_6():
+    assert find_smallest([-4, -3, -2, -1])==3
+
+def test__find_smallest_7():
+    assert find_smallest([-4, -3, -2, -1, 0, 1])==3
+
+def test__find_smallest_8():
+    assert find_smallest(list(range(100000, -100000, -1)))==199999
+
+def test__find_smallest_9():
+    xs = list(range(100000, -100000, -1)) + list(range(-99998, 100000))
+    assert find_smallest(xs)==199999
+
+def test__find_smallest_10():
+    assert find_smallest(list(range(-100000, 100000)))==0
+
+
 
 # the following test ensure that the runtimes are logrithmic;
 # the timeit library runs the functions 1e6 times in a loop;
@@ -153,6 +224,18 @@ def test__count_repeats_call_count():
     _, calls = _count_calls(count_repeats, xs, 0)
     # count_repeats performs two binary searches, so allow 2x the bound.
     assert calls <= 4 * math.ceil(math.log2(len(xs)))
+
+
+def test__find_largest_negative_call_count():
+    xs = list(range(-100000, 100000))
+    _, calls = _count_calls(find_largest_negative, xs)
+    assert calls <= 2 * math.ceil(math.log2(len(xs)))
+
+
+def test__find_smallest_call_count():
+    xs = list(range(100000, -100000, -1)) + list(range(-99998, 100000))
+    _, calls = _count_calls(find_smallest, xs)
+    assert calls <= 2 * math.ceil(math.log2(len(xs)))
 
 
 def test__find_smallest_positive_elapsed():
