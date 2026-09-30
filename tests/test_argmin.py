@@ -1,4 +1,4 @@
-from src.argmin import argmin, find_boundaries, argmin_simple
+from src.argmin import bounded_argmin, find_boundaries, argmin
 
 
 def test__argmin_1():
@@ -7,7 +7,7 @@ def test__argmin_1():
     hi = 20
     x_min = 5
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_2():
     epsilon = 1e-3
@@ -15,7 +15,7 @@ def test__argmin_2():
     hi = 20
     x_min = 5
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_3():
     epsilon = 1e-6
@@ -23,7 +23,7 @@ def test__argmin_3():
     hi = 20
     x_min = 5
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_4():
     epsilon = 1e-9
@@ -31,7 +31,7 @@ def test__argmin_4():
     hi = 20
     x_min = 5
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_5():
     epsilon = 1e-12
@@ -39,7 +39,7 @@ def test__argmin_5():
     hi = 20
     x_min = 5
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_6():
     epsilon = 1e-6
@@ -47,7 +47,7 @@ def test__argmin_6():
     hi = 1e20
     x_min = 5000
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_7():
     epsilon = 1e-6
@@ -55,7 +55,7 @@ def test__argmin_7():
     hi = 0
     x_min = 5000
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-0) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_8():
     epsilon = 1e-6
@@ -63,7 +63,7 @@ def test__argmin_8():
     hi = 1e20
     x_min = 5000
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-x_min) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_9():
     epsilon = 1e-6
@@ -71,7 +71,7 @@ def test__argmin_9():
     hi = 1e20
     x_min = -5000
     f = lambda x: (x-x_min)**2
-    assert abs(argmin(f,lo,hi,epsilon)-0) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 def test__argmin_10():
     epsilon = 1e-6
@@ -79,7 +79,7 @@ def test__argmin_10():
     hi = 1e20
     x_min = -5000
     f = lambda x: x
-    assert abs(argmin(f,lo,hi,epsilon)-0) <= epsilon
+    assert abs(bounded_argmin(f,lo,hi,epsilon)-x_min) <= epsilon
 
 
 def test__find_boundaries_1():
@@ -116,28 +116,28 @@ def test__argmin_simple_1():
     epsilon = 1e-3
     x_min = 0
     f = lambda x: (x-x_min)**2
-    assert abs(argmin_simple(f,epsilon)-x_min) <= epsilon
+    assert abs(argmin(f,epsilon)-x_min) <= epsilon
 
 def test__argmin_simple_2():
     epsilon = 1e-3
     x_min = 10
     f = lambda x: (x-x_min)**2
-    assert abs(argmin_simple(f,epsilon)-x_min) <= epsilon
+    assert abs(argmin(f,epsilon)-x_min) <= epsilon
 
 def test__argmin_simple_3():
     epsilon = 1e-3
     x_min = -10
     f = lambda x: (x-x_min)**2
-    assert abs(argmin_simple(f,epsilon)-x_min) <= epsilon
+    assert abs(argmin(f,epsilon)-x_min) <= epsilon
 
 def test__argmin_simple_4():
     epsilon = 1e-3
     x_min = -1e10
     f = lambda x: (x-x_min)**2
-    assert abs(argmin_simple(f,epsilon)-x_min) <= epsilon
+    assert abs(argmin(f,epsilon)-x_min) <= epsilon
 
 def test__argmin_simple_5():
     epsilon = 1e-3
     x_min = 1e10
     f = lambda x: (x-x_min)**2
-    assert abs(argmin_simple(f,epsilon)-x_min) <= epsilon
+    assert abs(argmin(f,epsilon)-x_min) <= epsilon

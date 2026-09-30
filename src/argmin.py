@@ -6,7 +6,7 @@ In this file, you will explore some basic methods for finding the minimum using 
 '''
 
 
-def argmin(f, lo, hi, epsilon=1e-3):
+def bounded_argmin(f, lo, hi, epsilon=1e-3):
     '''
     Assumes that f is an input function that takes a float as input and returns a float with a unique global minimum,
     and that lo and hi are both floats satisfying lo < hi.
@@ -29,9 +29,9 @@ def argmin(f, lo, hi, epsilon=1e-3):
     See the pytests for correct examples.
     The test cases on github actions do not test these doctests.
 
-    >>> argmin(lambda x: (x-5)**2, -20, 20)
+    >>> bounded_argmin(lambda x: (x-5)**2, -20, 20)
     5.000040370009773
-    >>> argmin(lambda x: (x-5)**2, -20, 0)
+    >>> bounded_argmin(lambda x: (x-5)**2, -20, 0)
     -0.00016935087808430278
     '''
 
@@ -54,10 +54,10 @@ def find_boundaries(f):
     '''
 
 
-def argmin_simple(f, epsilon=1e-3):
+def argmin(f, epsilon=1e-3):
     '''
-    This function is like argmin, but it internally uses the find_boundaries function so that
-    you do not need to specify lo and hi.
+    Returns a number that is within epsilon of the value that minimizes f(x).
+    Internally uses the find_boundaries function to determine the interval [lo,hi].
 
     NOTE:
     There is nothing to implement for this function.
@@ -65,4 +65,4 @@ def argmin_simple(f, epsilon=1e-3):
     then this function will work correctly too.
     '''
     lo, hi = find_boundaries(f)
-    return argmin(f, lo, hi, epsilon)
+    return bounded_argmin(f, lo, hi, epsilon)
