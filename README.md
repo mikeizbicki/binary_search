@@ -13,18 +13,14 @@ You will implement several variations of the binary search algorithm.
 
 Complete the following tasks:
 
-1. Fork the [binary\_search repo](https://github.com/mikeizbicki/binary_search) and enable github actions
+1. Fork the repo and enable github actions
 1. Update the `README.md` file so that the test case badges point to your forked repo
-1. Implement the `find_smallest_positive`, `count_repeats`, and `argmin` functions so that all test cases in `tests/test_main.py` pass.
-   You must implement each function recursively,
-   and you must ensure that they have logarithmic runtime.
-   (The test cases will not all pass if they do not have logarithmic runtimes.)
-
-Optional:
-
-1. You can get 2 points of extra credit if you also implement the `find_boundaries` function so that all test cases in the `tests/test_ec.py` file pass.
-   Pseudocode for the function is provided in the `binary_search.py` file.
+1. Implement the functions so that all test cases pass.
 
 ## Submission
 
-Submit the link to your forked repository on sakai.
+Submit the link to your forked repository on canvas.
+
+> **GRADING NOTE:**
+> There are 2 sets of test cases, each worth 8 points.
+> So one green badge and one red badge will get you 8/16 points.
