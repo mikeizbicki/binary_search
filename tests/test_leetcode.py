@@ -116,6 +116,13 @@ def test__count_repeats_runtime2():
     return True
 
 
+# the code below is a fancier way of testing for runtime of programs;
+# it is more complicated, but much faster to run;
+# these tests below are how real projects would test the runtime of their code,
+# but I want to force you to use the slow tests above to help you develop
+# good habits with using the various pytest features to run only some tests
+
+
 def _count_calls(fn, *args):
     '''
     Invoke fn(*args) while counting how many times fn is entered.
