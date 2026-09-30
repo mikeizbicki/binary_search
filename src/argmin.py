@@ -42,6 +42,10 @@ Here are some more examples using slightly more complex functions:
 >>> int(argmin(g))
 5
 
+The pytest test cases have examples of much more complex functions
+that would be impossible to find the minimum of using any standard
+calculus or algebra tricks.
+
 NOTE:
 The argmin function works over floating point values,
 but floating point values are hard to write tests for.
