@@ -81,7 +81,12 @@ def test__count_repeats_12():
 
 
 
-# the following test ensure that the runtimes are logrithmic
+# the following test ensure that the runtimes are logrithmic;
+# the timeit library runs the functions 1e6 times in a loop;
+# if your function is efficient (logarithmic runtime),
+# this will take 5-20 seconds per test case;
+# if your function is in-efficient, this will take hours per test case;
+# the long running tests will timeout on github actions and the test will fail
 
 def test__find_smallest_positive_runtime():
     seconds = timeit.timeit(
