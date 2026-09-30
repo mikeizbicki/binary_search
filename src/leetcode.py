@@ -1,6 +1,8 @@
 #!/bin/python3
 '''
 All of the functions in this file are classic leetcode style interview questions.
+They all take a container xs as input and run in time O(log n),
+where n is the length of xs.
 
 JOKE: There are 2 hard problems in computer science:
 1. cache invalidation,

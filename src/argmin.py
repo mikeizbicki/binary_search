@@ -3,7 +3,50 @@
 A common data science problem is to find the minimum of an unknown function.
 For example, all modern machine learning algorithms (including training large language models like chatgpt) are implemented this way.
 In this file, you will explore some basic methods for finding the minimum using binary search.
+
+The main function of this file is called argmin.
+It takes another function as a parameter, which might feel unusual to you.
+Consider the example function f
+
+>>> def f(x):
+...    return (x-5)**2
+
+Then we can pass the function f to another function as long as we do not put () next to f.
+
+>>> int(argmin(f))
+5
+
+(It should be "obvious" to you that 5 is the correct answer here that minimizes f.)
+
+It is often awkward to define simple functions using the `def` syntax,
+and python has a shorter `lambda` syntax for defining 1-line functions.
+The code below is equivalent to the code above:
+
+>>> int(argmin(lambda x: (x-5)**2))
+5
+
+These "lambda functions" are also called "anonymous functions"
+because they do not have a name.
+The test cases make extensive use of these anonymous functions.
+
+NOTE:
+The argmin function works over floating point values,
+but floating point values are hard to write tests for.
+So the doctests above convert the results to ints for convenience.
 '''
+
+
+def argmin(f, epsilon=1e-3):
+    '''
+    Returns a number that is within epsilon of the value that minimizes f(x).
+
+    NOTE:
+    There is nothing to implement for this function.
+    If you implement the find_boundaries and bounded_argmin functions correctly,
+    then this function will work correctly too.
+    '''
+    lo, hi = find_boundaries(f)
+    return bounded_argmin(f, lo, hi, epsilon)
 
 
 def bounded_argmin(f, lo, hi, epsilon=1e-3):
@@ -21,18 +64,9 @@ def bounded_argmin(f, lo, hi, epsilon=1e-3):
                depending on which one is the smallest,
                you recursively call your function on the interval [lo,m2] or [m1,hi]
 
-    WARNING:
-    The doctests below are not intended to pass on your code,
-    and are only given so that you have an example of what the output should look like.
-    Your output numbers are likely to be slightly different due to minor implementation details.
-    Writing tests for code that uses floating point numbers is notoriously difficult.
-    See the pytests for correct examples.
-    The test cases on github actions do not test these doctests.
-
-    >>> bounded_argmin(lambda x: (x-5)**2, -20, 20)
-    5.000040370009773
-    >>> bounded_argmin(lambda x: (x-5)**2, -20, 0)
-    -0.00016935087808430278
+    NOTE:
+    The runtime of this algorithm is O(log(1/epsilon)).
+    Notice that there is no "n" / size parameter here at all.
     '''
 
 
@@ -52,17 +86,3 @@ def find_boundaries(f):
     else:
         you're done; return lo,hi
     '''
-
-
-def argmin(f, epsilon=1e-3):
-    '''
-    Returns a number that is within epsilon of the value that minimizes f(x).
-    Internally uses the find_boundaries function to determine the interval [lo,hi].
-
-    NOTE:
-    There is nothing to implement for this function.
-    If you implement the find_boundaries function correctly,
-    then this function will work correctly too.
-    '''
-    lo, hi = find_boundaries(f)
-    return bounded_argmin(f, lo, hi, epsilon)
