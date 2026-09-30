@@ -2,7 +2,11 @@
 [![](https://github.com/mikeizbicki/binary_search/workflows/tests_leetcode/badge.svg)](https://github.com/mikeizbicki/binary_search/actions?query=workflow%3Atests_leetcode)
 [![](https://github.com/mikeizbicki/binary_search/workflows/tests_argmin/badge.svg)](https://github.com/mikeizbicki/binary_search/actions?query=workflow%3Atests_argmin)
 
+<img src=img/meme.jpg width=400px />
+
 You will implement several variations of the binary search algorithm.
+These algorithms are often also called "divide and conquer" algorithms,
+and they are very popular because of their fast runtimes.
 
 **Learning Objectives:**
 
